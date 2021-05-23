@@ -45,6 +45,14 @@ k = -P1(1);
 mu1 = pi*r^4*rho*g/(8*A*k*l)
 
 
+figure
+plot(t,height)
+hold on 
+grid on 
+h_mean = mean(height(space));
+dhdt = (height(space(1)) - height(space(end)))/(t(space(1)) - t(space(end))); %DY/DT
+u = -dhdt*A/(pi*r^2);
+Re = u*rho*l/mu1
 %% second measurement, 
 % find mu from data
 run import_script2.m
