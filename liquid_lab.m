@@ -32,6 +32,9 @@ height = P(1)*volt+P(2);
 h0 = height(1);
 figure
 plot(t,log(height/h0))
+hold on 
+grid on 
+
 % h0 = 
 rho = 999.75; %kg/m^3 at temp 9.something degrees C
 g = 9.82;
@@ -39,10 +42,17 @@ l = 28.95e-2; %length of pipe
 r = .14e-2/2;
 D = 6.4e-2;
 A = pi*(D/2)^2 ;
-space = [200:1500];
+space = [400:1450];
 P1 = polyfit(t(space),log(height(space)/h0),1);
 k = -P1(1);
 mu1 = pi*r^4*rho*g/(8*A*k*l)
+plot(t(space(1)), log(height(space(1))/h0), 'r*')
+plot(t(space(end)), log(height(space(end))/h0),'r*')
+
+% plot(t(1650), log(height(1650)/h0), 'r*')
+% plot(t(end), log(height(end)/h0),'r*')
+
+
 
 
 figure
@@ -51,8 +61,12 @@ hold on
 grid on 
 h_mean = mean(height(space));
 dhdt = (height(space(1)) - height(space(end)))/(t(space(1)) - t(space(end))); %DY/DT
+
+plot(t(400), height(400), 'r*')
+plot(t(1450), height(1450),'r*')
+
 u = -dhdt*A/(pi*r^2);
-Re = u*rho*l/mu1
+Re = u*rho*(2*r)/mu1
 %% second measurement, 
 % find mu from data
 run import_script2.m
@@ -63,6 +77,8 @@ height = P(1)*volt+P(2);
 h0 = P(1)*volt(1)+P(2);
 figure
 plot(t,log(height/h0))
+hold on 
+grid on 
 % h0 = 
 r = .5*.28e-2;
 l = 32.25e-2;
@@ -72,4 +88,37 @@ P2 = polyfit(t,log(height/h0),1);
 k = -P2(1);
 mu2 = pi*r^4*rho*g/(8*A*k*l)
 
+
+space_lam = [250:length(t)];
+dhdt = (height(space_lam(1)) - height(space_lam(end)))/(t(space_lam(1)) - t(space_lam(end))); %DY/DT
+plot(t(space_lam(1)), log(height(space_lam(1))/h0), 'r*')
+plot(t(space_lam(end)), log(height(space_lam(end))/h0),'r*')
+u = -dhdt*A/(pi*r^2);
+Re_lam = u*rho*(2*r)/mu1
+
+space_trans = [100:250];
+dhdt = (height(space_trans(1)) - height(space_trans(end)))/(t(space_trans(1)) - t(space_trans(end))); %DY/DT
+plot(t(space_trans(1)), log(height(space_trans(1))/h0), 'r*')
+plot(t(space_trans(end)), log(height(space_trans(end))/h0),'r*')
+u = -dhdt*A/(pi*r^2);
+Re_trans = u*rho*(2*r)/mu1
+
+space_turb = [1:100];
+dhdt = (height(space_turb(1)) - height(space_turb(end)))/(t(space_turb(1)) - t(space_turb(end))); %DY/DT
+plot(t(space_turb(1)), log(height(space_turb(1))/h0), 'r*')
+plot(t(space_turb(end)), log(height(space_turb(end))/h0),'r*')
+u = -dhdt*A/(pi*r^2);
+Re_turb = u*rho*(2*r)/mu1
+
+
+figure 
+plot(t,height)
+hold on 
+grid on 
+plot(t(space_lam(1)), height(space_lam(1)), 'r*')
+plot(t(space_lam(end)), height(space_lam(end)),'r*')
+plot(t(space_trans(1)), height(space_trans(1)), 'r*')
+plot(t(space_trans(end)), height(space_trans(end)),'r*')
+plot(t(space_turb(1)), height(space_turb(1)), 'r*')
+plot(t(space_turb(end)), height(space_turb(end)),'r*')
 

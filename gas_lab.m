@@ -51,16 +51,25 @@ grid on
 dist = [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]*1e-3; %Distance from top of tube in m
 volt2 = [.33, .35, .41, .45, .48, .48, .52, .53, .54, .52, .53, .51, .47, .48, .45, .41, .35, .27]; %Volt from pitot tube
 
+
+Pdiff_pitot = c1+c2*volt2;
+u = sqrt(2*Pdiff_pitot/rho);
+
 figure
-plot(dist,volt2)
+plot(dist,u,'*')
 hold on
 grid on 
-
+xlabel('Distance from top [m]')
+ylabel('Speed of air [m/s]')
 
 % extra measurement in the middle of the tube to see if it was really asymmetric
 dist_middle = 50e-3;
 volt_middle = mean([56.7, 62.1,53.0,51.8,43.5, 49.7])*1e-2;
-plot(dist_middle,volt_middle,'r*')
+% plot(dist_middle,volt_middle,'r*')
+% uniform flow
+plot(dist,ones(1,length(dist))*max(u))
+% plot laminar flow here as well (otto or johannes has theoretiucal solution?)
+
 
 
 
