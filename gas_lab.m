@@ -39,7 +39,8 @@ figure
 plot(u,w1)
 hold on 
 grid on 
-
+xlabel('u [m/s]')
+ylabel('W1??')
 
 
 
@@ -96,7 +97,8 @@ figure
 plot(u2,w1_2)
 hold on 
 grid on 
-
+xlabel('u [m/s]')
+ylabel('W1??')
 
 
 
