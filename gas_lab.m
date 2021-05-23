@@ -1,4 +1,4 @@
-
+%Just adding a comment to see that git works the way I think
 
 % this is the first (very wrong one) that we did
 % u = [0, 10, 20, 30, 40, 50, 60];
