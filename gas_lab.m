@@ -72,7 +72,7 @@ plot(dist,ones(1,length(dist))*max(u))
 % plot laminar flow here as well (otto or johannes has theoretiucal solution?)
 
 
-
+% plot(dist,ones(1,length(dist))*max(u))
 
 
 %% Task 3 , redo task 1 with pitot tube in the back

@@ -48,7 +48,8 @@ k = -P1(1);
 mu1 = pi*r^4*rho*g/(8*A*k*l)
 plot(t(space(1)), log(height(space(1))/h0), 'r*')
 plot(t(space(end)), log(height(space(end))/h0),'r*')
-
+xlabel('Time [s]')
+ylabel('ln(h/h0)')
 % plot(t(1650), log(height(1650)/h0), 'r*')
 % plot(t(end), log(height(end)/h0),'r*')
 
@@ -79,6 +80,8 @@ figure
 plot(t,log(height/h0))
 hold on 
 grid on 
+xlabel('Time [s]')
+ylabel('ln(h/h0)')
 % h0 = 
 r = .5*.28e-2;
 l = 32.25e-2;
